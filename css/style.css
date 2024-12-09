@@ -4,12 +4,15 @@ canvas {
     margin-top: 10px;
     background-color: #f8f9fa;
     object-fit: contain;
+    image-rendering: -webkit-optimize-contrast;
+    image-rendering: crisp-edges;
 }
 
 #originalCanvas, #calibratedCanvas {
     display: block;
     margin: 10px auto;
-    width: 100% !important; /* Override any inline width */
+    max-width: 20%;
+    width: auto !important;
 }
 
 .card {
@@ -17,7 +20,11 @@ canvas {
 }
 
 .form-label {
-    font-weight: 500;
+    font-weight: 400;
+    margin-bottom: 0px;
+    letter-spacing: -0.01em;
+    font-size: 12px;
+    color: #818791;
 }
 
 .card-body {
@@ -28,6 +35,8 @@ canvas {
     position: relative;
     width: 100%;
     padding: 10px;
+    max-height: 600px;
+    overflow: auto;
 }
 
 /* Add responsive breakpoints */
@@ -36,3 +45,266 @@ canvas {
         padding: 5px;
     }
 } 
+
+/* Restore color intensity styles */
+.color-intensity {
+    margin-top: 10px;
+}
+
+#redIntensity {
+    accent-color: red;
+}
+
+#greenIntensity {
+    accent-color: green;
+}
+
+#blueIntensity {
+    accent-color: blue;
+}
+
+.settings-content {
+    padding: 15px;
+}
+
+/* Add these new styles */
+body {
+    background-color: #F4F4F4;
+    font-family: 'Inter', sans-serif;
+}
+
+.settings-section {
+    background: white;
+    border-radius: 8px;
+    padding: 20px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+    margin-bottom: 20px;
+}
+
+.settings-title {
+    font-size: 1.1rem;
+    font-weight: 600;
+    margin-bottom: 20px;
+    color: #333;
+}
+
+.settings-content {
+    padding: 0 10px;
+}
+
+.preview-section {
+    background: white;
+    border-radius: 8px;
+    padding: 20px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+}
+
+.preview-title {
+    font-size: 1.1rem;
+    font-weight: 600;
+    margin-bottom: 20px;
+    color: #333;
+}
+
+.value-label {
+    min-width: 48px;
+    text-align: right;
+    color: #818791;
+    font-size: 12px;
+    font-weight: 400;
+}
+
+.upload-area {
+    border: 2px dashed #ddd;
+    border-radius: 8px;
+    padding: 20px;
+    text-align: center;
+    position: relative;
+    background: #f8f9fa;
+    transition: all 0.3s ease;
+}
+
+.upload-area:hover {
+    border-color: #0d6efd;
+    background: #f0f7ff;
+}
+
+.upload-placeholder {
+    margin-bottom: 15px;
+    color: #818791;
+    font-size: 12px;
+    font-weight: 400;
+}
+
+.upload-placeholder i {
+    font-size: 2rem;
+    margin-bottom: 10px;
+    color: #999;
+}
+
+.preview-container {
+    border-radius: 8px;
+    margin-bottom: 20px;
+}
+
+/* Adjust existing canvas styles */
+.canvas-container {
+    background: white;
+    border-radius: 4px;
+    border: 1px solid #ddd;
+}
+
+/* Add these styles */
+#addMonitorSection {
+    background: white;
+    border-radius: 8px;
+    padding: 20px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+}
+
+#addMonitorSection form {
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.d-none {
+    display: none !important;
+}
+
+/* Input styles */
+input.form-control,
+select.form-select,
+.form-range {
+    height: 50px;
+    border-radius: 8px;
+    padding: 0 15px;
+    margin-top: 8px;
+    margin-bottom: 16px;
+}
+
+/* Specific adjustments for range inputs */
+.form-range {
+    padding: 0;  /* Remove padding for range inputs */
+}
+
+/* Ensure select dropdowns have consistent height */
+select.form-select {
+    appearance: none;
+    -webkit-appearance: none;
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3e%3cpath fill='none' stroke='%23343a40' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M2 5l6 6 6-6'/%3e%3c/svg%3e");
+    background-repeat: no-repeat;
+    background-position: right 15px center;
+    background-size: 16px 12px;
+    padding-right: 45px;
+}
+
+/* Add margin to input containers */
+.mb-3, .mb-4 {
+    margin-top: 16px;
+    margin-bottom: 16px;
+}
+
+/* Typography */
+h1, h2, h3, h4, h5, h6,
+.form-label,
+.btn,
+input,
+select,
+.settings-title,
+.preview-title {
+    font-family: 'Inter', sans-serif;
+}
+
+/* Preview image labels */
+.preview-container h6 {
+    font-size: 12px;
+    color: #818791;
+    font-weight: 400;
+    letter-spacing: -0.01em;
+}
+
+.settings-title,
+.preview-title {
+    font-weight: 600;
+    letter-spacing: -0.02em;
+}
+
+.form-label {
+    font-weight: 400;
+    letter-spacing: -0.01em;
+}
+
+input.form-control,
+select.form-select {
+    font-weight: 400;
+    letter-spacing: -0.01em;
+}
+
+/* Container styles for scrollable sections */
+.settings-container {
+    height: 100vh;
+    overflow-y: auto;
+    padding-right: 15px;
+}
+
+.preview-container-wrapper {
+    height: 100vh;
+    overflow-y: auto;
+    padding-left: 15px;
+}
+
+/* Scrollbar styling */
+.settings-container::-webkit-scrollbar,
+.preview-container-wrapper::-webkit-scrollbar {
+    width: 8px;
+}
+
+.settings-container::-webkit-scrollbar-track,
+.preview-container-wrapper::-webkit-scrollbar-track {
+    background: #f1f1f1;
+    border-radius: 4px;
+}
+
+.settings-container::-webkit-scrollbar-thumb,
+.preview-container-wrapper::-webkit-scrollbar-thumb {
+    background: #c1c1c1;
+    border-radius: 4px;
+}
+
+.settings-container::-webkit-scrollbar-thumb:hover,
+.preview-container-wrapper::-webkit-scrollbar-thumb:hover {
+    background: #a8a8a8;
+}
+
+/* Update the container margin */
+.container-fluid.mt-4 {
+    margin-top: 0!important;
+}
+
+/* Header styles */
+.settings-header {
+    padding: 32px 0px 32px 0px;
+}
+
+.app-title {
+    font-size: 48px;
+    font-weight: 700;
+    color: #1A1D1F;
+    margin-bottom: 8px;
+    letter-spacing: -0.02em;
+}
+
+.app-tagline {
+    font-size: 16px;
+    color: #818791;
+    margin: 0;
+    font-weight: 400;
+    letter-spacing: -0.01em;
+}
+
+/* Update scrollable container padding to account for header */
+.settings-container,
+.preview-container-wrapper {
+    height: 100vh;
+    margin-top: 0;
+}

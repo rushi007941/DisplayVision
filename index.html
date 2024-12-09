@@ -3,152 +3,236 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Image Color Matching</title>
+    <title>DisplayVision</title>
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Inter Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link href="css/style.css" rel="stylesheet">
 </head>
 <body class="bg-light">
-    <!-- Navbar -->
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-        <div class="container-fluid">
-            <a class="navbar-brand" href="#">Image Color Matching</a>
-        </div>
-    </nav>
-
-    <div class="container mt-5">
-        <!-- Step 1: Monitor Selection -->
-        <div class="card mb-4 shadow-sm rounded">
-            <div class="card-header bg-primary text-white">
-                <h5 class="mb-0">Step 1: Select Monitor</h5>
-            </div>
-            <div class="card-body">
-                <select class="form-select mb-3" id="monitorSelect">
-                    <option value="">Choose Monitor...</option>
-                    <optgroup label="LG">
-                        <option value="lg_w1943c">LG W1943C (18.5")</option>
-                    </optgroup>
-                    <optgroup label="Frontech">
-                        <option value="frontech_mon0001">Frontech MON-0001 (19")</option>
-                    </optgroup>
-                    <optgroup label="Zebronics">
-                        <option value="zebronics_v19hd">Zebronics ZEB-V19HD (18.5")</option>
-                    </optgroup>
-                </select>
-
-                <!-- Monitor Specifications Display -->
-                <div id="monitorSpecs" class="mt-3 d-none">
-                    <h6>Monitor Specifications:</h6>
-                    <div class="table-responsive">
-                        <table class="table table-sm">
-                            <tbody id="specsTable">
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- Step 2: Display and Color Settings -->
-        <div class="card mb-4 shadow-sm rounded">
-            <div class="card-header bg-primary text-white">
-                <h5 class="mb-0">Step 2: Display and Color Settings</h5>
-            </div>
-            <div class="card-body">
-                <!-- Color Gamut Selection -->
-                <div class="mb-3">
-                    <label class="form-label">Color Gamut</label>
-                    <select class="form-select" id="colorGamut">
-                        <option value="srgb">sRGB (Standard)</option>
-                        <option value="p3">Display P3 (Wide Color)</option>
-                        <option value="adobe">Adobe RGB</option>
-                        <option value="rec2020">Rec. 2020 (Ultra Wide)</option>
-                    </select>
+    <div class="container-fluid mt-4">
+        <div class="row">
+            <!-- Left Side: Settings -->
+            <div class="col-md-4 settings-container">
+                <!-- Header -->
+                <div class="settings-header">
+                    <h1 class="app-title">DisplayVision</h1>
+                    <p class="app-tagline">See your images as your clients will.</p>
                 </div>
 
-                <!-- Color Space -->
-                <div class="mb-3">
-                    <label class="form-label">Color Space</label>
-                    <select class="form-select" id="colorSpace">
-                        <option value="srgb">sRGB</option>
-                        <option value="rgb">RGB</option>
-                        <option value="cmyk">CMYK (Simulation)</option>
-                    </select>
-                </div>
-
-                <!-- Display Settings -->
-                <div class="mb-3">
-                    <label class="form-label">Brightness: <span id="brightnessValue">100</span>%</label>
-                    <input type="range" class="form-range" id="brightness" min="0" max="200" value="100">
-                </div>
-
-                <div class="mb-3">
-                    <label class="form-label">Contrast: <span id="contrastValue">100</span>%</label>
-                    <input type="range" class="form-range" id="contrast" min="0" max="200" value="100">
-                </div>
-
-                <div class="mb-3">
-                    <label class="form-label">Color Temperature (K)</label>
-                    <select class="form-select" id="colorTemp">
-                        <option value="5000">5000K (D50)</option>
-                        <option value="6500" selected>6500K (D65)</option>
-                        <option value="7500">7500K (D75)</option>
-                        <option value="9300">9300K</option>
-                    </select>
-                </div>
-
-                <div class="mb-3">
-                    <label class="form-label">Color Intensity: <span id="intensityValue">100</span>%</label>
-                    <input type="range" class="form-range" id="colorIntensity" min="0" max="100" value="100">
-                </div>
-            </div>
-        </div>
-
-        <!-- Step 3: Image Upload -->
-        <div class="card mb-4 shadow-sm rounded">
-            <div class="card-header bg-primary text-white">
-                <h5 class="mb-0">Step 3: Upload Image</h5>
-            </div>
-            <div class="card-body">
-                <input type="file" class="form-control" id="imageUpload" accept="image/*">
-            </div>
-        </div>
-
-        <!-- Step 4: Preview -->
-        <div class="card mb-4 shadow-sm rounded">
-            <div class="card-header bg-primary text-white">
-                <h5 class="mb-0">Step 4: Preview</h5>
-            </div>
-            <div class="card-body">
-                <div class="row">
-                    <div class="col-md-6">
-                        <h6 class="text-center">Original Image</h6>
-                        <div class="canvas-container">
-                            <canvas id="originalCanvas"></canvas>
-                        </div>
-                    </div>
-                    <div class="col-md-6">
-                        <h6 class="text-center">Calibrated Image</h6>
-                        <div class="canvas-container">
-                            <canvas id="calibratedCanvas"></canvas>
+                <!-- Step 1: Monitor Selection -->
+                <div class="settings-section mb-4">
+                    <h5 class="settings-title">1. Select monitor</h5>
+                    <div class="settings-content">
+                        <select class="form-select mb-3" id="monitorSelect">
+                            <option value="">Choose Monitor...</option>
+                            <optgroup label="LG">
+                                <option value="lg_w1943c">LG W1943C (18.5")</option>
+                            </optgroup>
+                            <optgroup label="Frontech">
+                                <option value="frontech_mon0001">Frontech MON-0001 (19")</option>
+                            </optgroup>
+                            <optgroup label="Zebronics">
+                                <option value="zebronics_v19hd">Zebronics ZEB-V19HD (18.5")</option>
+                            </optgroup>
+                        </select>
+                        
+                        <div class="text-end mb-3">
+                            <button type="button" class="btn btn-primary" onclick="toggleAddMonitorForm()">
+                                <i class="bi bi-plus-circle"></i> Add monitor
+                            </button>
                         </div>
                     </div>
                 </div>
-                <div class="text-center mt-3">
-                    <button class="btn btn-success" id="processButton" disabled>Reprocess Image</button>
+
+                <!-- Step 2: Display and Color Settings -->
+                <div class="settings-section mb-4">
+                    <h5 class="settings-title">2. Display and color settings</h5>
+                    <div class="settings-content">
+                        <!-- Color Gamut Selection -->
+                        <div class="mb-3">
+                            <label class="form-label">Color Gamut</label>
+                            <select class="form-select" id="colorGamut">
+                                <option value="srgb">sRGB (Standard)</option>
+                                <option value="p3">Display P3 (Wide Color)</option>
+                                <option value="adobe">Adobe RGB</option>
+                                <option value="rec2020">Rec. 2020 (Ultra Wide)</option>
+                            </select>
+                        </div>
+
+                        <!-- Other settings -->
+                        <div class="settings-group">
+                            <div class="mb-3">
+                                <label class="form-label">Color Space</label>
+                                <select class="form-select" id="colorSpace">
+                                    <option value="srgb">sRGB</option>
+                                    <option value="rgb">RGB</option>
+                                    <option value="cmyk">CMYK (Simulation)</option>
+                                </select>
+                            </div>
+
+                            <div class="mb-4">
+                                <label class="form-label">Brightness</label>
+                                <div class="d-flex align-items-center">
+                                    <input type="range" class="form-range flex-grow-1" id="brightness" min="0" max="200" value="100">
+                                    <span class="ms-2 value-label" id="brightnessValue">50%</span>
+                                </div>
+                            </div>
+
+                            <div class="mb-4">
+                                <label class="form-label">Contrast</label>
+                                <div class="d-flex align-items-center">
+                                    <input type="range" class="form-range flex-grow-1" id="contrast" min="0" max="200" value="100">
+                                    <span class="ms-2 value-label" id="contrastValue">50%</span>
+                                </div>
+                            </div>
+
+                            <div class="mb-3">
+                                <label class="form-label">Color Temperature (K)</label>
+                                <select class="form-select" id="colorTemp">
+                                    <option value="5000">5000K (D50)</option>
+                                    <option value="6500" selected>6500K (D65)</option>
+                                    <option value="7500">7500K (D75)</option>
+                                    <option value="9300">9300K</option>
+                                </select>
+                            </div>
+
+                            <div class="mb-3">
+                                <label class="form-label">Color Intensity</label>
+                                <div class="d-flex align-items-center">
+                                    <input type="range" class="form-range flex-grow-1" id="colorIntensity" min="0" max="100" value="100">
+                                    <span class="ms-2 value-label" id="intensityValue">50%</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Step 3: Upload Image -->
+                <div class="settings-section mb-4">
+                    <h5 class="settings-title">3. Upload image</h5>
+                    <div class="settings-content">
+                        <div class="upload-area">
+                            <div class="upload-placeholder">
+                                <i class="bi bi-image"></i>
+                                <p>Drag your image here or select the image</p>
+                            </div>
+                            <input type="file" class="form-control" id="imageUpload" accept="image/*">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Right Side: Preview -->
+            <div class="col-md-8 preview-container-wrapper">
+                <!-- Preview Section -->
+                <div class="preview-section" id="previewSection">
+                    <h5 class="preview-title">Preview</h5>
+                    <div class="preview-content">
+                        <div class="preview-container mb-4">
+                            <h6 class="text-muted mb-2">Your image</h6>
+                            <div class="canvas-container">
+                                <canvas id="originalCanvas"></canvas>
+                            </div>
+                        </div>
+                        
+                        <div class="preview-container">
+                            <h6 class="text-muted mb-2">Calibrated image</h6>
+                            <div class="canvas-container">
+                                <canvas id="calibratedCanvas"></canvas>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Add Monitor Form Section -->
+                <div class="preview-section d-none" id="addMonitorSection">
+                    <div class="d-flex justify-content-between align-items-center mb-4">
+                        <h5 class="preview-title mb-0">Add New Monitor</h5>
+                        <button type="button" class="btn btn-outline-secondary" id="cancelAddBtn">
+                            Cancel
+                        </button>
+                    </div>
+                    <form id="monitorPresetForm">
+                        <div class="mb-3">
+                            <label class="form-label">Monitor Brand</label>
+                            <input type="text" class="form-control" id="monitorBrand" required>
+                        </div>
+                        
+                        <div class="mb-3">
+                            <label class="form-label">Monitor Model</label>
+                            <input type="text" class="form-control" id="monitorModel" required>
+                        </div>
+
+                        <div class="mb-3">
+                            <label class="form-label">Color Gamut</label>
+                            <select class="form-select" id="newMonitorColorGamut" required>
+                                <option value="srgb">sRGB (Standard)</option>
+                                <option value="p3">Display P3 (Wide Color)</option>
+                                <option value="adobe">Adobe RGB</option>
+                                <option value="rec2020">Rec. 2020 (Ultra Wide)</option>
+                            </select>
+                        </div>
+
+                        <div class="mb-3">
+                            <label class="form-label">Color Space</label>
+                            <select class="form-select" id="newMonitorColorSpace" required>
+                                <option value="srgb">sRGB</option>
+                                <option value="rgb">RGB</option>
+                                <option value="cmyk">CMYK</option>
+                            </select>
+                        </div>
+
+                        <!-- Add Brightness Slider -->
+                        <div class="mb-4">
+                            <label class="form-label">Default Brightness</label>
+                            <div class="d-flex align-items-center">
+                                <input type="range" class="form-range flex-grow-1" id="newBrightness" min="0" max="200" value="100">
+                                <span class="ms-2 value-label" id="newBrightnessValue">100%</span>
+                            </div>
+                        </div>
+
+                        <!-- Add Contrast Slider -->
+                        <div class="mb-4">
+                            <label class="form-label">Default Contrast</label>
+                            <div class="d-flex align-items-center">
+                                <input type="range" class="form-range flex-grow-1" id="newContrast" min="0" max="200" value="100">
+                                <span class="ms-2 value-label" id="newContrastValue">100%</span>
+                            </div>
+                        </div>
+
+                        <!-- Add Color Temperature -->
+                        <div class="mb-3">
+                            <label class="form-label">Default Color Temperature (K)</label>
+                            <select class="form-select" id="newColorTemp" required>
+                                <option value="5000">5000K (D50)</option>
+                                <option value="6500" selected>6500K (D65)</option>
+                                <option value="7500">7500K (D75)</option>
+                                <option value="9300">9300K</option>
+                            </select>
+                        </div>
+
+                        <!-- Add Color Intensity Slider -->
+                        <div class="mb-4">
+                            <label class="form-label">Default Color Intensity</label>
+                            <div class="d-flex align-items-center">
+                                <input type="range" class="form-range flex-grow-1" id="newColorIntensity" min="0" max="100" value="100">
+                                <span class="ms-2 value-label" id="newIntensityValue">100%</span>
+                            </div>
+                        </div>
+
+                        <div class="text-end mt-4">
+                            <button type="submit" class="btn btn-primary">Add Monitor</button>
+                        </div>
+                    </form>
                 </div>
             </div>
         </div>
     </div>
 
-    <!-- Footer -->
-    <footer class="bg-dark text-white text-center py-3 mt-5">
-        <p class="mb-0">© 2023 Image Color Matching. All rights reserved.</p>
-    </footer>
-
-    <!-- Bootstrap JS -->
+    <!-- Scripts -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-    <!-- Custom JS -->
     <script src="js/monitors.js"></script>
     <script src="js/main.js"></script>
 </body>

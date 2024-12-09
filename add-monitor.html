@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add New Monitor Preset</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/style.css" rel="stylesheet">
+</head>
+<body class="bg-light">
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="index.html">Image Color Matching</a>
+        </div>
+    </nav>
+
+    <div class="container mt-5">
+        <div class="card mb-4 shadow-sm rounded">
+            <div class="card-header bg-primary text-white">
+                <h5 class="mb-0">Add New Monitor Preset</h5>
+            </div>
+            <div class="card-body">
+                <form id="monitorPresetForm">
+                    <!-- Basic Information -->
+                    <div class="mb-3">
+                        <label class="form-label">Monitor Brand</label>
+                        <input type="text" class="form-control" id="monitorBrand" required>
+                    </div>
+                    
+                    <div class="mb-3">
+                        <label class="form-label">Monitor Model</label>
+                        <input type="text" class="form-control" id="monitorModel" required>
+                    </div>
+
+                    <!-- Display Settings -->
+                    <h6 class="mt-4 mb-3">Display Settings</h6>
+                    
+                    <div class="mb-3">
+                        <label class="form-label">Color Gamut</label>
+                        <select class="form-select" id="colorGamut" required>
+                            <option value="srgb">sRGB (Standard)</option>
+                            <option value="p3">Display P3 (Wide Color)</option>
+                            <option value="adobe">Adobe RGB</option>
+                            <option value="rec2020">Rec. 2020 (Ultra Wide)</option>
+                        </select>
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="form-label">Color Space</label>
+                        <select class="form-select" id="colorSpace" required>
+                            <option value="srgb">sRGB</option>
+                            <option value="rgb">RGB</option>
+                            <option value="cmyk">CMYK</option>
+                        </select>
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="form-label">Default Brightness (%)</label>
+                        <input type="range" class="form-range" id="brightness" min="0" max="200" value="100">
+                        <span id="brightnessValue">100%</span>
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="form-label">Default Contrast (%)</label>
+                        <input type="range" class="form-range" id="contrast" min="0" max="200" value="100">
+                        <span id="contrastValue">100%</span>
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="form-label">Color Temperature (K)</label>
+                        <select class="form-select" id="colorTemp" required>
+                            <option value="5000">5000K (D50)</option>
+                            <option value="6500" selected>6500K (D65)</option>
+                            <option value="7500">7500K (D75)</option>
+                            <option value="9300">9300K</option>
+                        </select>
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="form-label">Color Intensity (%)</label>
+                        <input type="range" class="form-range" id="colorIntensity" min="0" max="100" value="100">
+                        <span id="intensityValue">100%</span>
+                    </div>
+
+                    <div class="text-end mt-4">
+                        <a href="index.html" class="btn btn-secondary me-2">Cancel</a>
+                        <button type="submit" class="btn btn-primary">Save Monitor Preset</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Custom JS -->
+    <script src="js/monitor-preset.js"></script>
+</body>
+</html> 
