@@ -1,0 +1,38 @@
+canvas {
+    max-width: 100%;
+    height: auto !important; /* Override any inline height */
+    margin-top: 10px;
+    background-color: #f8f9fa;
+    object-fit: contain;
+}
+
+#originalCanvas, #calibratedCanvas {
+    display: block;
+    margin: 10px auto;
+    width: 100% !important; /* Override any inline width */
+}
+
+.card {
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.form-label {
+    font-weight: 500;
+}
+
+.card-body {
+    overflow: hidden;
+}
+
+.canvas-container {
+    position: relative;
+    width: 100%;
+    padding: 10px;
+}
+
+/* Add responsive breakpoints */
+@media (max-width: 768px) {
+    .canvas-container {
+        padding: 5px;
+    }
+} 
